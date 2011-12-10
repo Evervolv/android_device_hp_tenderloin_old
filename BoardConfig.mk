@@ -1,0 +1,64 @@
+USE_CAMERA_STUB := true
+
+# inherit from the proprietary version
+-include vendor/hp/tenderloin/BoardConfigVendor.mk
+
+TARGET_NO_BOOTLOADER := true
+
+TARGET_BOARD_PLATFORM := msm8660
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
+
+TARGET_CPU_ABI := armeabi-v7a
+TARGET_CPU_ABI2 := armeabi
+TARGET_ARCH_VARIANT := armv7-a-neon
+TARGET_CPU_SMP := true
+ARCH_ARM_HAVE_TLS_REGISTER := true
+
+TARGET_BOOTLOADER_BOARD_NAME := tenderloin
+TARGET_HAVE_HDMI_OUT := true
+TARGET_USES_OVERLAY := true
+TARGET_NO_RADIOIMAGE := true
+TARGET_HAVE_TSLIB := false
+TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
+
+# Wifi related defines
+BOARD_WPA_SUPPLICANT_DRIVER := WEXT
+WPA_SUPPLICANT_VERSION      := VER_0_6_X
+BOARD_WLAN_DEVICE           := bcm4329
+WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/bcm4329.ko"
+WIFI_DRIVER_FW_STA_PATH     := "/system/etc/firmware/fw_bcm4329.bin"
+WIFI_DRIVER_FW_AP_PATH      := "/system/etc/firmware/fw_bcm4329_apsta.bin"
+WIFI_DRIVER_MODULE_ARG      := "firmware_path=/system/etc/firmware/fw_bcm4329.bin nvram_path=/proc/calibration"
+WIFI_DRIVER_MODULE_NAME     := "bcm4329"
+
+#Bluetooth
+BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_BCM := true
+
+# Define egl.cfg location
+BOARD_EGL_CFG := device/hp/tenderloin/egl.cfg
+
+BOARD_KERNEL_CMDLINE := no_console_suspend=1
+BOARD_KERNEL_BASE := 0x9311b900
+BOARD_PAGE_SIZE := 1819634989
+
+TARGET_USE_SCORPION_BIONIC_OPTIMIZATION := true
+
+# Define Prebuilt kernel locations
+TARGET_PREBUILT_KERNEL := device/hp/tenderloin/kernel
+
+TARGET_USERIMAGES_USE_EXT4 := true
+BOARD_BOOTIMAGE_PARTITION_SIZE := 0x00380000
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x00480000
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0x08c60000
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x105c0000
+BOARD_FLASH_BLOCK_SIZE := 131072
+
+TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
+
+BOARD_USES_MMCUTILS := true
+BOARD_HAS_NO_MISC_PARTITION := true
+BOARD_HAS_NO_SELECT_BUTTON := true
+BOARD_CUSTOM_GRAPHICS:= ../../../device/hp/tenderloin/graphics.c
+BOARD_USES_RECOVERY_CHARGEMODE := true

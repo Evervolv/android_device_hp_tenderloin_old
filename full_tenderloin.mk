@@ -24,7 +24,9 @@ PRODUCT_COPY_FILES += \
 
 #Add toushcreen config file
 PRODUCT_COPY_FILES += \
-    device/hp/tenderloin/cy8c-touchscreen.idc:system/usr/idc/cy8c-touchscreen.idc
+    device/hp/tenderloin/cy8c-touchscreen.idc:system/usr/idc/cy8c-touchscreen.idc \
+    device/hp/tenderloin/pmic8058_pwrkey.idc:system/usr/idc/pmic8058_pwrkey.idc \
+    device/hp/tenderloin/pmic8058_pwrkey.kl:system/usr/idc/pmic8058_pwrkey.kl
 
 ## (2) Also get non-open-source GSM-specific aspects if available
 $(call inherit-product-if-exists, vendor/hp/tenderloin/tenderloin-vendor.mk)

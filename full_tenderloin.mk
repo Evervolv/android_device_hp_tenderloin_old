@@ -26,7 +26,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/hp/tenderloin/cy8c-touchscreen.idc:system/usr/idc/cy8c-touchscreen.idc \
     device/hp/tenderloin/pmic8058_pwrkey.idc:system/usr/idc/pmic8058_pwrkey.idc \
-    device/hp/tenderloin/pmic8058_pwrkey.kl:system/usr/idc/pmic8058_pwrkey.kl
+    device/hp/tenderloin/pmic8058_pwrkey.kl:system/usr/idc/pmic8058_pwrkey.kl \
+    device/hp/tenderloin/gpio-keys.idc:system/usr/idc/gpio-keys.idc
+
 
 ## (2) Also get non-open-source GSM-specific aspects if available
 $(call inherit-product-if-exists, vendor/hp/tenderloin/tenderloin-vendor.mk)

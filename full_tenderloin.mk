@@ -14,10 +14,6 @@
 # limitations under the License.
 #
 
-
-PRODUCT_AAPT_CONFIG := normal hdpi
-PRODUCT_AAPT_PREF_CONFIG := hdpi
-
 #TODO ---- What do we need to do to not use a static init & init.rc?
 PRODUCT_COPY_FILES += \
     device/hp/tenderloin/init:root/init \
@@ -67,6 +63,14 @@ PRODUCT_PACKAGES += \
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
+##Disable HWAccel for now & set ldc_density
+ADDITIONAL_BUILD_PROPERTIES += \
+    ro.config.disable_hw_accel=true \
+    ro.sf.lcd_density=160
+
+PRODUCT_AAPT_CONFIG := normal mdpi
+PRODUCT_AAPT_PREF_CONFIG := mdpi
+PRODUCT_CHARACTERISTICS := tablet
 
 PRODUCT_LOCALES += en
 

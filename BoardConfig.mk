@@ -15,7 +15,6 @@ TARGET_CPU_SMP := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
 TARGET_BOOTLOADER_BOARD_NAME := tenderloin
-TARGET_HAVE_HDMI_OUT := true
 TARGET_USES_OVERLAY := true
 TARGET_NO_RADIOIMAGE := true
 TARGET_HAVE_TSLIB := false
@@ -23,35 +22,37 @@ TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 
 # Wifi related defines
-BOARD_WPA_SUPPLICANT_DRIVER := WEXT
-WPA_SUPPLICANT_VERSION      := VER_0_6_X
-BOARD_WLAN_DEVICE           := bcm4329
-WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/bcm4329.ko"
-WIFI_DRIVER_FW_STA_PATH     := "/system/etc/firmware/fw_bcm4329.bin"
-WIFI_DRIVER_FW_AP_PATH      := "/system/etc/firmware/fw_bcm4329_apsta.bin"
-WIFI_DRIVER_MODULE_ARG      := "firmware_path=/system/etc/firmware/fw_bcm4329.bin nvram_path=/proc/calibration"
-WIFI_DRIVER_MODULE_NAME     := "bcm4329"
+BOARD_WPA_SUPPLICANT_DRIVER      := WEXT
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wext
+WPA_SUPPLICANT_VERSION           := VER_0_8_X
+BOARD_WLAN_DEVICE                := bcm4329
+WIFI_DRIVER_MODULE_PATH          := "/system/lib/modules/bcm4329.ko"
+WIFI_DRIVER_FW_PATH_STA          := "/vendor/firmware/fw_bcm4329.bin"
+WIFI_DRIVER_FW_PATH_AP           := "/vendor/firmware/fw_bcm4329_apsta.bin"
+WIFI_DRIVER_MODULE_ARG           := "firmware_path=/vendor/firmware/fw_bcm4329.bin nvram_path=/proc/calibration"
+WIFI_DRIVER_MODULE_NAME          := "bcm4329"
 
 #Bluetooth
-BOARD_HAVE_BLUETOOTH := true
-BOARD_HAVE_BLUETOOTH_BCM := true
+#BOARD_HAVE_BLUETOOTH := true
+#BOARD_HAVE_BLUETOOTH_BCM := true
 
 # Define egl.cfg location
 BOARD_EGL_CFG := device/hp/tenderloin/egl.cfg
-USE_OPENGL_RENDERER := true
-BOARD_NO_RGBX_8888 := true
 BOARD_USES_OVERLAY := true
-COMMON_GLOBAL_CFLAGS += -DBOARD_GL_OES_EGL_IMG_EXTERNAL_HACK
+#USE_OPENGL_RENDERER := true
+#BOARD_USES_HGL := true
 
+COMMON_GLOBAL_CFLAGS += \
+    -DMISSING_EGL_EXTERNAL_IMAGE \
+    -DMISSING_EGL_PIXEL_FORMAT_YV12 \
+    -DMISSING_GRALLOC_BUFFERS
+
+# Legacy touchscreen support
+BOARD_USE_LEGACY_TOUCHSCREEN := true
 
 BOARD_KERNEL_CMDLINE := no_console_suspend=1
-BOARD_KERNEL_BASE := 0x9311b900
+BOARD_KERNEL_BASE := 0x40208000
 BOARD_PAGE_SIZE := 1819634989
-BOARD_USES_UBOOT_MULTIIMAGE := true
-
-
-
-TARGET_USE_SCORPION_BIONIC_OPTIMIZATION := true
 
 # Define Prebuilt kernel locations
 TARGET_PREBUILT_KERNEL := device/hp/tenderloin/kernel

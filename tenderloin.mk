@@ -83,6 +83,8 @@ else
 	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
 
+ADDITIONAL_DEFAULT_PROPERTIES += persist.service.adb.enable=1
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
 

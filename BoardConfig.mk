@@ -64,7 +64,9 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 838860800
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 20044333056
 BOARD_FLASH_BLOCK_SIZE := 131072
 
-TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
+# We use custom releasetools because we don't want to generate OTA packages
+# that kill /dev/block/mmcblk0p13.
+TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/hp/tenderloin/releasetools/ota_from_target_files
 
 BOARD_USES_MMCUTILS := true
 BOARD_HAS_NO_MISC_PARTITION := true

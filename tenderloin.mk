@@ -49,6 +49,7 @@ PRODUCT_PACKAGES += \
     librs_jni \
     libOmxVenc \
     libOmxVdec \
+    hwcomposer.default \
     com.android.future.usb.accessory
 #    librs_jni \
 #    gralloc.msm8660 \
@@ -57,6 +58,7 @@ PRODUCT_PACKAGES += \
 #    libOmxCore \
 #    libaudio \
 
+# We use the default hwcomposer for now.
 
 # Keylayouts
 #PRODUCT_COPY_FILES += \
@@ -83,7 +85,8 @@ else
 	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
 
-ADDITIONAL_DEFAULT_PROPERTIES += persist.service.adb.enable=1
+# Product property overrides.
+PRODUCT_PROPERTY_OVERRIDES += ro.config.disable_hw_accel=true
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel

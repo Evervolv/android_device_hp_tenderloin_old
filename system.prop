@@ -35,3 +35,6 @@ ro.emmc = 1
 
 # bluetooth
 net.bt.name=Android
+
+# Start ADB at boot
+persist.sys.usb.config=mtp,adb

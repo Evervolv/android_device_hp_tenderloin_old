@@ -26,14 +26,12 @@ PRODUCT_COPY_FILES += \
     device/hp/tenderloin/init.tenderloin.rc:root/init.tenderloin.rc \
     device/hp/tenderloin/ueventd.tenderloin.rc:root/ueventd.tenderloin.rc
 
-#Add toushcreen config file
+# Add toushcreen config file
 PRODUCT_COPY_FILES += \
     device/hp/tenderloin/cy8c-touchscreen.idc:system/usr/idc/cy8c-touchscreen.idc
 
 ## (2) Also get non-open-source GSM-specific aspects if available
 $(call inherit-product-if-exists, vendor/hp/tenderloin/tenderloin-vendor.mk)
-
-DEVICE_PACKAGE_OVERLAYS += device/hp/tenderloin/overlay
 
 PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
@@ -61,16 +59,15 @@ PRODUCT_PACKAGES += \
 # We use the default hwcomposer for now.
 
 # Keylayouts
-#PRODUCT_COPY_FILES += \
+PRODUCT_COPY_FILES += \
+    device/hp/tenderloin/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
+    device/hp/tenderloin/keylayout/pmic8058_pwrkey.kl:system/usr/keylayout/pmic8058_pwrkey.kl
 
 # Kernel modules
 #PRODUCT_COPY_FILES += \
 
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
-
-
-PRODUCT_LOCALES += en
 
 PRODUCT_COPY_FILES += \
     device/hp/tenderloin/vold.fstab:system/etc/vold.fstab

@@ -37,6 +37,9 @@ WIFI_DRIVER_MODULE_NAME     := "bcm4329"
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
 
+# Touchscreen
+BOARD_USE_LEGACY_TOUCHSCREEN := true
+
 # Define egl.cfg location
 BOARD_EGL_CFG := device/hp/tenderloin/egl.cfg
 USE_OPENGL_RENDERER := true

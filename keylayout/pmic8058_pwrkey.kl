@@ -1,4 +1,4 @@
-# GPIO key layout mapping for HP Touchpad (tenderloin).
+# Power key layout mapping for HP Touchpad (tenderloin).
 # Copyright (C) 2012 Wong Yong Jie
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +13,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-key 114   VOLUME_DOWN      WAKE_DROPPED
-key 115   VOLUME_UP        WAKE_DROPPED
-key 232   HOME             WAKE
+key 107   POWER            WAKE
 

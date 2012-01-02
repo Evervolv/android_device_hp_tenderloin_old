@@ -224,8 +224,6 @@ def BuildBootableImage(sourcedir):
     cmd = ["mkimage"]
     for argument in open(fn).read().rstrip("\n").split(" "):
       cmd.append(argument)
-    cmd.append("-d")
-    cmd.append(os.path.join(sourcedir, "kernel")+":"+ramdisk_img.name)
     cmd.append(img.name)
 
   else:
@@ -253,7 +251,7 @@ def BuildBootableImage(sourcedir):
 
     cmd.extend(["--ramdisk", ramdisk_img.name,
                 "--output", img.name])
-
+  print cmd
   p = Run(cmd, stdout=subprocess.PIPE)
   p.communicate()
   assert p.returncode == 0, "mkbootimg of %s image failed" % (

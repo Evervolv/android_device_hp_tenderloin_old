@@ -51,7 +51,7 @@ BOARD_KERNEL_BASE := 0x9311b900
 BOARD_PAGE_SIZE := 1819634989
 
 # Boot image options
-BOARD_CUSTOM_BOOTIMG_MK := device/common/uboot-bootimg.mk
+BOARD_CUSTOM_BOOTIMG_MK := device/hp/tenderloin/uboot-bootimg.mk
 BOARD_USES_UBOOT_MULTIIMAGE := true
 BOARD_UBOOT_ENTRY := 0x40208000
 BOARD_UBOOT_LOAD := 0x40208000

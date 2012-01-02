@@ -564,7 +564,7 @@ void open_uinput()
     memset(&device, 0, sizeof device);
 
     uinput_fd = open(UINPUT_LOCATION,O_WRONLY);
-    strcpy(device.name,"HPTouchpad");
+    strcpy(device.name,"cy8c-touchscreen");
 
     device.id.bustype = BUS_VIRTUAL;
     device.id.vendor = 1;

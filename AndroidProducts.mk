@@ -1,2 +1,2 @@
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/tenderloin.mk
+    $(LOCAL_DIR)/full_tenderloin.mk

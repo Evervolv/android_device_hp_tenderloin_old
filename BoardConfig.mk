@@ -26,12 +26,12 @@ TARGET_USE_SCORPION_BIONIC_OPTIMIZATION := true
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
 WPA_SUPPLICANT_VERSION      := VER_0_6_X
-BOARD_WLAN_DEVICE           := bcm4329
-WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/bcm4329.ko"
-WIFI_DRIVER_FW_STA_PATH     := "/system/etc/firmware/fw_bcm4329.bin"
-WIFI_DRIVER_FW_AP_PATH      := "/system/etc/firmware/fw_bcm4329_apsta.bin"
-WIFI_DRIVER_MODULE_ARG      := "firmware_path=/system/etc/firmware/fw_bcm4329.bin nvram_path=/proc/calibration"
-WIFI_DRIVER_MODULE_NAME     := "bcm4329"
+BOARD_WLAN_DEVICE           := ar6000
+WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/ar6000.ko"
+#WIFI_DRIVER_FW_STA_PATH     := "/system/etc/firmware/fw_bcm4329.bin"
+#WIFI_DRIVER_FW_AP_PATH      := "/system/etc/firmware/fw_bcm4329_apsta.bin"
+#WIFI_DRIVER_MODULE_ARG      := "firmware_path=/system/etc/firmware/fw_bcm4329.bin nvram_path=/proc/calibration"
+WIFI_DRIVER_MODULE_NAME     := "ar6000"
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true

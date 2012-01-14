@@ -80,7 +80,8 @@ PRODUCT_PACKAGES += \
     libOmxVenc \
     libOmxVdec \
     hwcomposer.default \
-    com.android.future.usb.accessory
+    com.android.future.usb.accessory \
+    ts_srv
 #    librs_jni \
 #    gralloc.msm8660 \
 #    copybit.msm8660 \

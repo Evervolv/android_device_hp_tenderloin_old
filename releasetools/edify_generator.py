@@ -156,7 +156,7 @@ class EdifyGenerator(object):
   def UnpackPackageFile(self, src, dst):
     """Unpack a given file from the OTA package into the given
     destination file."""
-    self.script.append('package_extract_file("%s", "%s");', % (src, dst))
+    self.script.append('package_extract_file("%s", "%s");' % (src, dst))
 
   def Comment(self, comment):
     """Write a comment into the update script."""

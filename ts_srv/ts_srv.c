@@ -398,14 +398,17 @@ void calc_point()
 			int yval_final = xval * 0.752;
 #endif
 
+			send_uevent(uinput_fd, EV_KEY, BTN_TOUCH, 1);
 #if SEND_TRACK
 			/* Android does not need this an it simplifies stuff
 			 * for us as we don't need to track individual touches
 			 */
 			send_uevent(uinput_fd, EV_ABS, ABS_MT_TRACKING_ID, tpc);
 #endif
-			send_uevent(uinput_fd, EV_ABS, ABS_MT_TOUCH_MAJOR, 1);
-			send_uevent(uinput_fd, EV_ABS, ABS_MT_WIDTH_MAJOR, 10);
+			send_uevent(uinput_fd, EV_ABS, ABS_MT_PRESSURE, 1);
+			// Deprecated in ICS.
+			// send_uevent(uinput_fd, EV_ABS, ABS_MT_TOUCH_MAJOR, 1);
+			// send_uevent(uinput_fd, EV_ABS, ABS_MT_WIDTH_MAJOR, 10);
 			send_uevent(uinput_fd, EV_ABS, ABS_MT_POSITION_X, xval_final);
 			send_uevent(uinput_fd, EV_ABS, ABS_MT_POSITION_Y, yval_final);
 			send_uevent(uinput_fd, EV_SYN, SYN_MT_REPORT, 0);
@@ -741,8 +744,9 @@ int main(int argc, char** argv)
 			printf("timeout! sending liftoff\n");
 #endif
 #if 1
-			send_uevent(uinput_fd, EV_ABS, ABS_PRESSURE, 0);
-//			send_uevent(uinput_fd, EV_ABS, BTN_2, 0);
+			// These are deprecated in ICS.
+			// send_uevent(uinput_fd, EV_ABS, ABS_PRESSURE, 0);
+			// send_uevent(uinput_fd, EV_ABS, BTN_2, 0);
 			send_uevent(uinput_fd, EV_KEY, BTN_TOUCH, 0);
 #endif
 
@@ -750,7 +754,9 @@ int main(int argc, char** argv)
 #if SEND_TRACK
 			send_uevent(uinput_fd, EV_ABS, ABS_MT_TRACKING_ID, 1);
 #endif
-			send_uevent(uinput_fd, EV_ABS, ABS_MT_TOUCH_MAJOR, 0);
+			send_uevent(uinput_fd, EV_ABS, ABS_MT_PRESSURE, 0);
+			// Deprecated in ICS.
+			// send_uevent(uinput_fd, EV_ABS, ABS_MT_TOUCH_MAJOR, 0);
 			send_uevent(uinput_fd, EV_SYN, SYN_MT_REPORT, 0);
 #endif
 

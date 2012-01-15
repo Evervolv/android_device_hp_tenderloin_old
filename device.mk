@@ -22,21 +22,20 @@ $(call inherit-product-if-exists, vendor/hp/tenderloin/tenderloin-vendor.mk)
 # application settings that are stored in resourced.
 DEVICE_PACKAGE_OVERLAYS += device/hp/tenderloin/overlay
 
-#TODO ---- What do we need to do to not use a static init & init.rc?
+# Custom init files.
 PRODUCT_COPY_FILES += \
     device/hp/tenderloin/init.rc:root/init.rc \
-    device/hp/tenderloin/ueventd.rc:root/ueventd.rc \
     device/hp/tenderloin/init.tenderloin.rc:root/init.tenderloin.rc \
     device/hp/tenderloin/init.tenderloin.usb.rc:root/init.tenderloin.usb.rc \
     device/hp/tenderloin/ueventd.tenderloin.rc:root/ueventd.tenderloin.rc
 
 # Add touchcreen configuration file
 PRODUCT_COPY_FILES += \
-    device/hp/tenderloin/cy8c-touchscreen.idc:system/usr/idc/cy8c-touchscreen.idc
+    device/hp/tenderloin/idc/cy8c-touchscreen.idc:system/usr/idc/cy8c-touchscreen.idc
 
 # Vold configuration
 PRODUCT_COPY_FILES += \
-    device/hp/tenderloin/vold.fstab:system/etc/vold.fstab
+    device/hp/tenderloin/configs/vold.fstab:system/etc/vold.fstab
 
 # Telephony stuff, not sure if we need all of these.
 PRODUCT_COPY_FILES += \

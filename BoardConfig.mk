@@ -22,6 +22,7 @@ TARGET_HAVE_TSLIB := false
 TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_USE_SCORPION_BIONIC_OPTIMIZATION := true
+#BOARD_USES_QCOM_HARDWARE := true
 
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
@@ -36,9 +37,6 @@ WIFI_DRIVER_MODULE_NAME     := "ar6000"
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
-
-# Touchscreen
-BOARD_USE_LEGACY_TOUCHSCREEN := true
 
 # Define egl.cfg location
 BOARD_EGL_CFG := device/hp/tenderloin/egl.cfg

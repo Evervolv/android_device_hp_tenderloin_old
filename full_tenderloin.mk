@@ -21,7 +21,6 @@
 
 # Property overrides.
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.disable_hw_accel=true \
     ro.com.google.locationfeatures=1 \
     ro.com.google.networklocation=1 \
     ro.setupwizard.enable_bypass=1

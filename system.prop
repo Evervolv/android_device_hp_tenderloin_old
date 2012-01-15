@@ -1,37 +1,36 @@
+#
 # system.prop for tenderloin
 #
-dalvik.vm.heapsize=32m
 
-ro.sf.hwrotation=270
-
-ro.additionalmounts=/mnt/usbdisk
-
+# RIL options
 rild.libpath=/system/lib/libreference-ril.so
 rild.libargs=-d /dev/ttyS0
 ro.telephony.default_network=0
 #ro.telephony.ril_class=simulated
 
+# For ClockWorkMod
 ro.cwm.forbid_format=/boot
 
+# WiFi interface options
 wifi.supplicant_scan_interval=45
 wifi.interface=wlan0 
 
-debug.fb.rgb565 = 0
-debug.sf.hw=1
-
-#c2d
-debug.composition.type=c2d
-debug.overlayui.enable=0
-
+# Graphics options
 # The OpenGL ES API level that is natively supported by this device.
 # This is a 16.16 fixed point number
-ro.opengles.version = 131072
+ro.opengles.version=131072
+debug.composition.type=c2d
+debug.overlayui.enable=0
+ro.sf.lcd_density=160
+debug.sf.hw=1
+debug.fb.rgb565=0
 
 # For emmc phone storage
-ro.phone_storage = 1
+ro.phone_storage=1
+ro.additionalmounts=/mnt/usbdisk
 
 # Make rmt_storage start at init
-ro.emmc = 1
+ro.emmc=1
 
 # bluetooth
 net.bt.name=Android

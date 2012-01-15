@@ -75,16 +75,11 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 
 # Additional packages.
 PRODUCT_PACKAGES += \
-    librs_jni \
     libOmxVenc \
     libOmxVdec \
     hwcomposer.default \
     com.android.future.usb.accessory \
     ts_srv 
-#    librs_jni \
-#    gralloc.msm8660 \
-#    copybit.msm8660 \
-#    overlay.default \
 #    libOmxCore \
 #    libaudio 
 

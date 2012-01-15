@@ -189,32 +189,32 @@ service bugreport /system/bin/dumpstate -d -v -o /sdcard/bugreports/bugreport
     oneshot
     keycodes 158 139
 
-service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
-    user bluetooth
-    group qcom_oncrpc bluetooth net_bt_admin system
-    disabled
-    oneshot
-
 service tsdriver /system/bin/ts_srv
+    class main
     critical
 
 service dcvs0 /system/bin/dcvs --cpu=0 --slacktime=64
+    class main
     user root
     disabled
 
 service dcvs1 /system/bin/dcvs --cpu=1 --slacktime=64
+    class main
     user root
     disabled
 
 service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
+    class main
     user root
     disabled
 
 service thermald /system/bin/thermald
+    class main
     user root
     disabled
 
 service serial /sbin/serial
+    class main
     disabled
     oneshot
 

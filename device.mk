@@ -24,10 +24,10 @@ DEVICE_PACKAGE_OVERLAYS += device/hp/tenderloin/overlay
 
 #TODO ---- What do we need to do to not use a static init & init.rc?
 PRODUCT_COPY_FILES += \
-    device/hp/tenderloin/init:root/init \
     device/hp/tenderloin/init.rc:root/init.rc \
     device/hp/tenderloin/ueventd.rc:root/ueventd.rc \
     device/hp/tenderloin/init.tenderloin.rc:root/init.tenderloin.rc \
+    device/hp/tenderloin/init.tenderloin.usb.rc:root/init.tenderloin.usb.rc \
     device/hp/tenderloin/ueventd.tenderloin.rc:root/ueventd.tenderloin.rc
 
 # Add touchcreen configuration file
@@ -81,7 +81,7 @@ PRODUCT_PACKAGES += \
     libOmxVdec \
     hwcomposer.default \
     com.android.future.usb.accessory \
-    ts_srv \
+    ts_srv 
 #    librs_jni \
 #    gralloc.msm8660 \
 #    copybit.msm8660 \

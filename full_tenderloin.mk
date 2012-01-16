@@ -96,9 +96,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.google.networklocation=1 \
     ro.setupwizard.enable_bypass=1 
 
-# This is a high density device.
-PRODUCT_LOCALES += en
-PRODUCT_AAPT_CONFIG := normal hdpi
+PRODUCT_AAPT_CONFIG := normal mdpi
+RODUCT_AAPT_PREF_CONFIG := mdpi
 
 # Prebuilt kernel.
 ifeq ($(TARGET_PREBUILT_KERNEL),)
@@ -112,6 +111,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
+
+$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # This is a tablet.
 PRODUCT_CHARACTERISTICS := tablet

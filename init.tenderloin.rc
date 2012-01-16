@@ -30,7 +30,7 @@ on early-fs
 
     # remove all the lvm stuff as well as the moboot nextboot instruction
     exec /system/xbin/rm -rf /dev/mmcblk0p14 /lib /mnt/moboot.next /var
-    umount /mnt
+    exec /system/xbin/umount /mnt
 
 on early-init
     start serial

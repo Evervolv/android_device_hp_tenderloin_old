@@ -26,7 +26,7 @@ debug.sf.hw=1
 debug.fb.rgb565=0
 #hwui.render_dirty_regions=false
 hwui.disable_vsync=true
-
+ro.sf.hwrotation=270
 
 debug.qctwa.statusbar=1
 debug.qctwa.preservebuf=1
@@ -46,4 +46,4 @@ ro.emmc=1
 net.bt.name=Android
 
 # Start ADB at boot
-persist.sys.usb.config=mtp,adb
+persist.sys.usb.config=adb

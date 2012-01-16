@@ -111,5 +111,7 @@ endif
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
 
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
+
 # This is a tablet.
 PRODUCT_CHARACTERISTICS := tablet

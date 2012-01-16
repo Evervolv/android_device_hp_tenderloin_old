@@ -70,14 +70,12 @@ on init
 
     chown system system /sys/devices/platform/msm_sdcc.4/polling
 
-    #  for emmc  (shared with webos at /dev/share/media)
-
+    # for emmc  (shared with webos at /dev/share/media)
     export PHONE_STORAGE /mnt/emmc
     mkdir /mnt/emmc 0000 system system
     symlink /mnt/emmc /emmc
 
     #  for mounting USB storage
-
     mkdir /mnt/usbdisk 0000 system system
 
     # For TS control
@@ -86,8 +84,8 @@ on init
     chown system system /sys/user_hw/pins/ctp/wake/level
     chown system system /dev/i2c-5
 
-	# increase per-process file limit to prevent warning
-	setrlimit 7 10000 10000
+    # increase per-process file limit to prevent warning
+    setrlimit 7 10000 10000
 
 on boot
     mkdir /data/misc/wifi 0770 system wifi
@@ -134,6 +132,9 @@ on boot
     write /sys/module/lowmemorykiller/parameters/minfree 8192,10240,12288,14336,16384,20480
     write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold 90
     write /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate 50000
+
+    # Network management socket tagging
+    chmod 0666 /proc/net/xt_qtaguid/ctrl
 
     # allow libaudio to change idle collapse on open/close
     #chown audio audio /sys/module/pm_8x60/modes/cpu0/power_collapse/idle_enabled

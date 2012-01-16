@@ -75,9 +75,16 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 
 # Additional packages.
 PRODUCT_PACKAGES += \
+    copybit.msm8660 \
+    gralloc.msm8660 \
+    hwcomposer.msm8660 \
+    libgenlock \
+    libmemalloc \
+    liboverlay \
+    libQcomUI \
+    libOmxCore \
     libOmxVenc \
     libOmxVdec \
-    hwcomposer.default \
     com.android.future.usb.accessory \
     ts_srv 
 #    libOmxCore \
@@ -90,7 +97,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.setupwizard.enable_bypass=1 
 
 # This is a high density device.
-PRODUCT_LOCALES += hdpi
+PRODUCT_LOCALES += en
 PRODUCT_AAPT_CONFIG := normal hdpi
 
 # Prebuilt kernel.

@@ -24,8 +24,16 @@ debug.overlayui.enable=0
 ro.sf.lcd_density=160
 debug.sf.hw=1
 debug.fb.rgb565=0
-hwui.render_dirty_regions=false
+#hwui.render_dirty_regions=false
 hwui.disable_vsync=true
+
+
+debug.qctwa.statusbar=1
+debug.qctwa.preservebuf=1
+
+# cm qcom build lub
+com.qc.hardware=true
+com.qc.hdmi_out=false
 
 # For emmc phone storage
 ro.phone_storage=1

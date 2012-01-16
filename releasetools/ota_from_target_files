@@ -52,9 +52,12 @@ Usage:  ota_from_target_files [flags] input_target_files output_ota_package
   -a  (--aslr_mode)  <on|off>
       Specify whether to turn on ASLR for the package (on by default).
 
-  --backup <boolean>
-      Enable or disable the execution of backuptool.sh.
-      Disabled by default.
+  --motd  <string>
+      Insert a MOTD
+
+  --motd-limit  <int>
+      Limit the MOTD to x characters per line (fixes a flashing problem)
+      Default 48 (chosen from the Evo)
 
   --override_device <device>
       Override device-specific asserts. Can be a comma-separated list.
@@ -62,6 +65,7 @@ Usage:  ota_from_target_files [flags] input_target_files output_ota_package
 """
 
 import sys
+import os
 
 if sys.hexversion < 0x02040000:
   print >> sys.stderr, "Python 2.4 or newer is required."
@@ -95,7 +99,8 @@ OPTIONS.omit_prereq = False
 OPTIONS.extra_script = None
 OPTIONS.aslr_mode = True
 OPTIONS.worker_threads = 3
-OPTIONS.backuptool = False
+OPTIONS.motd = None
+OPTIONS.motdLim = 48
 OPTIONS.override_device = 'auto'
 
 def MostPopularKey(d, default):
@@ -316,6 +321,13 @@ def SignOutput(temp_zip_name, output_zip_name):
   common.SignFile(temp_zip_name, output_zip_name, OPTIONS.package_key, pw,
                   whole_file=True)
 
+  ########## Printing of md5sum ##########
+  print "############ md5sum ############\n"
+  os.system("md5sum " + output_zip_name + " > " + output_zip_name + ".md5sum")
+  os.system("cat " + output_zip_name + ".md5sum")
+  print "\n################################"
+  os.system("touch " + output_zip_name.replace(".zip", ".log"))
+
 
 def AppendAssertions(script, input_zip):
   if OPTIONS.override_device == "auto":
@@ -395,19 +407,47 @@ def WriteFullOTAPackage(input_zip, output_zip):
 
   AppendAssertions(script, input_zip)
   device_specific.FullOTA_Assertions()
-  if OPTIONS.backuptool:
-    script.RunBackup("backup")
+
+# MOTD during flash added for Evervolv by cocide
+  if (OPTIONS.motd != None):
+    eachRawMotd = OPTIONS.motd.split("\\n")
+    for eachMotd in eachRawMotd:
+      rawMotd = eachMotd.split()
+      sizedMotd = []
+      for word in rawMotd:
+        sizedMotd += [word[i:i+OPTIONS.motdLim] for i in range(0, len(word), OPTIONS.motdLim)]
+      sizedMotd.reverse()
+      if len(sizedMotd):
+        motdLine = [sizedMotd.pop()]
+      else:
+        motdLine = [""]
+      sizedMotd.reverse()
+      for word in sizedMotd:
+        if ( (motdLine[len(motdLine)-1].__len__() + word.__len__()) < 48):
+          motdLine[len(motdLine)-1] = motdLine[len(motdLine)-1] + " " + word
+        else:
+          motdLine.append(word)
+      for line in motdLine:
+        script.Print(line)
 
   script.ShowProgress(0.5, 0)
 
   if OPTIONS.wipe_user_data:
+# Comments during install added for Evervolv by cocide
+    script.Print("Wiping user data")
     script.FormatPartition("/data")
 
+# Comments during install added for Evervolv by cocide
+  script.Print("Formatting system")
   script.FormatPartition("/system")
   script.Mount("/system")
   #script.UnpackPackageDir("recovery", "/system")
+# Comments during install added for Evervolv by cocide
+  script.Print("Installing Evervolv")
   script.UnpackPackageDir("system", "/system")
 
+# Comments during install added for Evervolv by cocide
+  script.Print("Creating symlinks")
   (symlinks, retouch_files) = CopySystemFiles(input_zip, output_zip)
   script.MakeSymlinks(symlinks)
   if OPTIONS.aslr_mode:
@@ -422,15 +462,13 @@ def WriteFullOTAPackage(input_zip, output_zip):
   #MakeRecoveryPatch(output_zip, recovery_img, boot_img)
 
   Item.GetMetadata(input_zip)
+# Comments during install added for Evervolv by cocide
+  script.Print("Setting permissions")
   Item.Get("system").SetPermissions(script)
 
   common.CheckSize(boot_img.data, "boot.img", OPTIONS.info_dict)
   common.ZipWriteStr(output_zip, "boot.img", boot_img.data)
   script.ShowProgress(0.2, 0)
-
-  if OPTIONS.backuptool:
-    script.ShowProgress(0.2, 10)
-    script.RunBackup("restore")
 
   script.ShowProgress(0.2, 10)
   script.Mount("/boot");
@@ -777,8 +815,10 @@ def main(argv):
         OPTIONS.aslr_mode = False
     elif o in ("--worker_threads"):
       OPTIONS.worker_threads = int(a)
-    elif o in ("--backup"):
-      OPTIONS.backuptool = bool(a.lower() == 'true')
+    elif o in ("--motd"):
+      OPTIONS.motd = a
+    elif o in ("--motd-limit"):
+      OPTIONS.motdLim = a
     elif o in ("--override_device"):
       OPTIONS.override_device = a
     else:
@@ -795,7 +835,8 @@ def main(argv):
                                               "extra_script=",
                                               "worker_threads=",
                                               "aslr_mode=",
-                                              "backup=",
+                                              "motd=",
+                                              "motd-limit=",
                                               "override_device="],
                              extra_option_handler=option_handler)
 

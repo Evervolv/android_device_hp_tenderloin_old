@@ -13,13 +13,5 @@
 # limitations under the License.
 
 touch.deviceType = touchScreen
-touch.orientationAware = 0
 
-keyboard.layout = handset
-keyboard.characterMap = Virtual
-keyboard.orientationAware = 1
-keyboard.builtIn = 0
-
-cursor.mode = navigation
-cursor.orientationAware = 1
 

@@ -24,7 +24,6 @@ DEVICE_PACKAGE_OVERLAYS += device/hp/tenderloin/overlay
 
 # Custom init files.
 PRODUCT_COPY_FILES += \
-    device/hp/tenderloin/init.rc:root/init.rc \
     device/hp/tenderloin/init.tenderloin.rc:root/init.tenderloin.rc \
     device/hp/tenderloin/init.tenderloin.usb.rc:root/init.tenderloin.usb.rc \
     device/hp/tenderloin/ueventd.tenderloin.rc:root/ueventd.tenderloin.rc
